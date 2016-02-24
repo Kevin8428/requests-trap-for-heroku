@@ -1,0 +1,90 @@
+
+<div id="body-wrapper">
+  <div class="table-responsive">
+    <table id="myTable" class="table-striped table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>request date</th>
+          <th>query string</th>
+          <th>remote ip</th>
+          <th>request_method</th>
+          <th>scheme</th>
+          <th>query_string</th>
+          <th>query_params</th>
+          <th>cookies</th>
+          <th>headers</th>
+          <th>request detail</th>
+          <th>response detail</th>
+        </tr>
+      </thead>
+      <tbody id="table-id">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<% @all.each do |x|%>
+    <script type="text/javascript">
+    var tableRow = $('<tr>');
+    var var_id = '<%=x.id%>';
+    var var_date = '<%=x.req_date%>';
+    var var_string = '<%=x.string%>';
+    var var_remote_ip = '<%=x.remote_ip%>';
+    var var_request_method = '<%=x.request_method%>';
+    var var_scheme = document.createElement('td');
+    var_scheme.innerHTML = '<%=x.scheme%>';
+    var_scheme.id = '<%=x.id%>'
+    var var_query_string = '<%=x.query_string%>';
+    var var_query_params = '<%=x.query_params%>';
+    var var_cookies = '<%=x.cookies%>';
+    var var_headers = '<%=x.headers%>';
+    var var_detail = '<%= link_to 'view', :action => :single, :id =>(x.id)%>';
+    var var_response = document.createElement('td');
+    var_response.innerHTML = '<%=x.response%>';
+    var_response.id = 'response_'+'<%=x.id%>'
+    var_response.style.display = 'none'
+    var element = document.createElement("button");
+    element.id = '<%=x.id%>'
+    element.type = 'button';
+    element.innerHTML = 'view';
+    element.onclick = function (){
+       toggle('response_'+this.id);
+     };
+
+    $('#table-id').append(tableRow);
+    tableRow.append('<td>'+var_id+'</td>');
+    tableRow.append('<td>'+var_date+'</td>');
+    tableRow.append('<td>'+var_string+'</td>');
+    tableRow.append('<td>'+var_remote_ip+'</td>');
+    tableRow.append('<td>'+var_request_method+'</td>');
+    tableRow.append(var_scheme);
+    tableRow.append('<td>'+var_query_string+'</td>');
+    tableRow.append('<td>'+var_query_params+'</td>');
+    tableRow.append('<td>'+var_cookies+'</td>');
+    tableRow.append('<td>'+var_headers+'</td>');
+    tableRow.append('<td>'+var_detail+'</td>');
+    tableRow.append(element);
+    tableRow.append(var_response);
+    </script>
+<%end%>
+
+<script type="text/javascript">
+  function toggle(x){
+    var el = document.getElementById(x);
+     if ( el.style.display != "none" ) {
+         el.style.display = 'none';
+        }
+         else {
+             el.style.display = 'block';
+            }
+  }
+</script>

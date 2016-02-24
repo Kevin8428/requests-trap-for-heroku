@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reqtrap</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet"
+  href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+  <script type="text/javascript"
+  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript"
+  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script> -->
+</head>
+<body>
+  <script>
+  $(document).ready(function(){
+      $('#myTable').dataTable({
+        // "order": [[ 0, "asc" ]]
+        // "order": [[ 0, "desc" ]]
+        "columnDefs": [
+       { "type": "numeric-comma", targets: "_all" }
+   ]
+      });
+  });
+  </script>
+<%= yield %>
+
+</body>
+</html>
